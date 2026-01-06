@@ -26,7 +26,7 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if random.random() > REPLY_CHANCE:
         return
 
-    await asyncio.sleep(random.randint(10, 45))
+   # await asyncio.sleep(random.randint(10, 45))
     await update.message.reply_text(random.choice(replies))
 
 app = ApplicationBuilder().token(BOT_TOKEN).build()
