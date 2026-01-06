@@ -1,1 +1,0 @@
-# telegram-human-bot
