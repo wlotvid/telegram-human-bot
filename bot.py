@@ -4,7 +4,7 @@ import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
 
-BOT_TOKEN = "8023487115:AAG8O6Tv7dOJ6T8RqxoA4gpcZqOEFQ_NwyA"
+BOT_TOKEN = "8023487115:AAFH6nGtB_8dKnoKVT6LvBxsyPuBXgewJB8"
 
 REPLY_CHANCE = 0.15
 
