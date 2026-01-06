@@ -6,7 +6,7 @@ from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filte
 
 BOT_TOKEN = "8023487115:AAFH6nGtB_8dKnoKVT6LvBxsyPuBXgewJB8"
 
-REPLY_CHANCE = 0.15
+REPLY_CHANCE = 1
 
 replies = [
     "lol",
