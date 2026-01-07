@@ -1,34 +1,30 @@
-import random
-import asyncio
-import os
-from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
+import time
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from fastapi import FastAPI
+import threading
 
-BOT_TOKEN = "8023487115:AAFH6nGtB_8dKnoKVT6LvBxsyPuBXgewJB8"
+MODEL_NAME = "zai-org/GLM-4.7"
 
-REPLY_CHANCE = 1
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(
+    MODEL_NAME,
+    torch_dtype="auto",
+    device_map="auto",
+    trust_remote_code=True
+)
 
-replies = [
-    "lol",
-    "😂",
-    "💀",
-    "nah",
-    "same",
-    "idk",
-    "fr",
-    "👀"
-]
+print("Rawan bot is online and running...")
 
-async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if not update.message:
-        return
+# Background loop to keep the bot alive
+def run_bot_loop():
+    while True:
+        time.sleep(60)
 
-    if random.random() > REPLY_CHANCE:
-        return
+threading.Thread(target=run_bot_loop, daemon=True).start()
 
-   # await asyncio.sleep(random.randint(10, 45))
-    await update.message.reply_text(random.choice(replies))
+# Minimal FastAPI app to satisfy Railway
+app = FastAPI()
 
-app = ApplicationBuilder().token(BOT_TOKEN).build()
-app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
-app.run_polling()
+@app.get("/")
+def home():
+    return {"status": "Rawan bot is online"}
