@@ -1,1 +1,6 @@
-python-telegram-bot==20.7
+transformers
+torch
+accelerate
+huggingface_hub
+fastapi
+uvicorn[standard]
